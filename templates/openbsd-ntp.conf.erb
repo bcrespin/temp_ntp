@@ -2,21 +2,27 @@
 # openbsd ntp.conf file
 
 #listen on
-<% @interfaces.flatten.each do |interface| -%>
+<% if [@interfaces] != [] -%>
+<% [@interfaces].flatten.each do |interface| -%>
 listen on <%= interface %>
+<% end -%>
 <% end -%>
 
 #servers
-<% [@servers].flatten.each do |server| -%>
+<% @servers.flatten.each do |server| -%>
 servers <%= server %>
 <% end -%>
 
 # sensor
+<% if [@openbsd_ntp_sensor] != [] -%>
 <% [@openbsd_ntp_sensor].flatten.each do |sensor| -%>
 sensor <%= sensor %>
 <% end -%>
+<% end -%>
 
 #constraints
+<% if [@openbsd_ntp_constraints_from] != [] -%>
 <% [@openbsd_ntp_constraints_from].flatten.each do |constraint| -%>
 constraints from <%= constraint %>
+<% end -%>
 <% end -%>

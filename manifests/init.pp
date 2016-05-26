@@ -51,13 +51,11 @@ class ntp (
   $udlc_stratum                 = $ntp::params::udlc_stratum,
   $ntpsigndsocket               = $ntp::params::ntpsigndsocket,
   $authprov                     = $ntp::params::authprov,
-  $openbsd_ntp_listen_on        = $ntp::params::openbsd_ntp_listen_on,
   $openbsd_ntp_sensor           = $ntp::params::openbsd_ntp_sensor,
   $openbsd_ntp_constraints_from = $ntp::params::openbsd_ntp_constraints_from
 
 ) inherits ntp::params {
 
-  validate_array($openbsd_ntp_listen_on)
   validate_array($openbsd_ntp_sensor)
   validate_bool($broadcastclient)
   validate_absolute_path($config)

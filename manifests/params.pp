@@ -39,7 +39,7 @@ class ntp::params {
   $step_tickers_template  = 'ntp/step-tickers.erb'
   # parameters specific to ntp build in openbsd
   $openbsd_ntp_sensor = ['*']
-  $openbsd_ntp_constraints_from = undef
+  $openbsd_ntp_constraints_from = []
   #
 
   # Allow a list of fudge options
@@ -67,11 +67,16 @@ class ntp::params {
   }
 
   case $::osfamily {
-    'OpenBSD' {
+    'OpenBSD' : {
       $config_template = 'ntp/openbsd-ntp.conf.erb'
-      $config          = $default_config
-      $service_name    = $default_service_name
-      $package_name    = undef
+      $config          = '/etc/ntpd.conf'
+      $service_name    = 'ntpd'
+      # feed some useless vairable for this osfamily 
+      $package_name    = ['openbsd-builtin-ntp'] 
+      $iburst_enable   = false
+      $driftfile       = '/dev/null'
+      $restrict        = []
+      #
       $servers         = [
         'pool.ntp.org',
       ]
