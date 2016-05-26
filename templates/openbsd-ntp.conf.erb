@@ -2,8 +2,8 @@
 # openbsd ntp.conf file
 
 #listen on
-<% [@openbsd_ntp_listen_on].flatten.each do |listen| -%>
-listen on  <%= listen %>
+<% @interfaces.flatten.each do |interface| -%>
+listen on <%= interface %>
 <% end -%>
 
 #servers

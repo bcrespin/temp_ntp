@@ -3,7 +3,7 @@ class ntp::params {
   $autoupdate             = false
   $config_dir             = undef
   $config_file_mode       = '0644'
-  $config_template        = 'ntp/ntp.conf.erb'
+  #$config_template        = 'ntp/ntp.conf.erb'
   $keys                   = []
   $keys_enable            = false
   $keys_controlkey        = ''
@@ -38,9 +38,9 @@ class ntp::params {
   $authprov               = undef
   $step_tickers_template  = 'ntp/step-tickers.erb'
   # parameters specific to ntp build in openbsd
-  $openbsd_ntp_listen_on = ['*']
   $openbsd_ntp_sensor = ['*']
   $openbsd_ntp_constraints_from = undef
+  #
 
   # Allow a list of fudge options
   $fudge             = []
@@ -68,6 +68,7 @@ class ntp::params {
 
   case $::osfamily {
     'OpenBSD' {
+      $config_template = 'ntp/openbsd-ntp.conf.erb'
       $config          = $default_config
       $service_name    = $default_service_name
       $package_name    = undef
@@ -392,4 +393,6 @@ class ntp::params {
       fail("The ${module_name} module is not supported on an ${::osfamily} based system.")
     }
   }
+  
+  if ($config_template == undef ) {$config_template = 'ntp/ntp.conf.erb'}
 }
