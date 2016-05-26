@@ -1,0 +1,22 @@
+# ntp.conf: Managed by puppet.
+# openbsd ntp.conf file
+
+#listen on
+<% [@openbsd_ntp_listen_on].flatten.each do |listen| -%>
+listen on  <%= listen %>
+<% end -%>
+
+#servers
+<% [@servers].flatten.each do |server| -%>
+servers <%= server %>
+<% end -%>
+
+# sensor
+<% [@openbsd_ntp_sensor].flatten.each do |sensor| -%>
+sensor <%= sensor %>
+<% end -%>
+
+#constraints
+<% [@openbsd_ntp_constraints_from].flatten.each do |constraint| -%>
+constraints from <%= constraint %>
+<% end -%>
