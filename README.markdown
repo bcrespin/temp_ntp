@@ -14,6 +14,13 @@
 
 The ntp module installs, configures, and manages the NTP service.
 
+NOTE that on OpenBSD only some settings are relevant :
+- interfaces
+- servers
+- openbsd_ntp_sensor
+- openbsd_ntp_constraints_from
+other are IGNORED  !!
+
 ##Module Description
 
 The ntp module handles installing, configuring, and running NTP across a range of operating systems and distributions.
