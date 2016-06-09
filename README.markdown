@@ -19,6 +19,7 @@ NOTE that on OpenBSD only some settings are relevant :
 - servers
 - openbsd_ntp_sensor
 - openbsd_ntp_constraints_from
+
 other are IGNORED  !!
 
 ##Module Description
